@@ -3,8 +3,8 @@
 
 namespace cie {
 
-	DoubleVector::DoubleVector(int n) {
-		size_ = n; vec = new double[size_];
+	DoubleVector::DoubleVector(int n):
+		size_(n), vec(new double[size_]) {
 		for (int i = 0; i < n; i++) { vec[i] = 0; }
 	}
 
@@ -18,27 +18,27 @@ namespace cie {
 	}
 
 	void DoubleVector::resize(int ns) {
-		l = _msize(vec) / sizeof(vec[0]); new_size = ns;
-		if (new_size != l) {
-			temp = new double[l]; for (int i = 0; i < l; i++) { temp[i] = vec[i]; }
+		len = _msize(vec) / sizeof(vec[0]); new_size = ns;
+		if (new_size != len) {
+			temp = new double[len]; for (int i = 0; i < len; i++) { temp[i] = vec[i]; }
 			vec = new double[new_size];
 
-			if (new_size > l) {
-				for (int i = 0; i < l; i++) { vec[i] = temp[i]; }
-				for (int i = l; i < new_size; i++) { vec[i] = 0; }
+			if (new_size > len) {
+				for (int i = 0; i < len; i++) { vec[i] = temp[i]; }
+				for (int i = len; i < new_size; i++) { vec[i] = 0; }
 			}
-			else if (new_size < l) {
+			else if (new_size < len) {
 				for (int i = 0; i < new_size; i++) { vec[i] = temp[i]; }
 			}
 		}
 	}
 
 	void DoubleVector::push_back(double v) {
-		l = _msize(vec) / sizeof(vec[0]);
-		temp = new double[l]; for (int i = 0; i < l; i++) { temp[i] = vec[i]; }
-		vec = new double[l+1];
-		for (int i = 0; i < l; i++) { vec[i] = temp[i]; }
-		vec[l] = v;
+		len = _msize(vec) / sizeof(vec[0]);
+		temp = new double[len]; for (int i = 0; i < len; i++) { temp[i] = vec[i]; }
+		vec = new double[len+1];
+		for (int i = 0; i < len; i++) { vec[i] = temp[i]; }
+		vec[len] = v;
 	}
 
 	DoubleVector::~DoubleVector() {
