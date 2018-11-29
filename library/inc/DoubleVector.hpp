@@ -14,7 +14,7 @@ namespace cie {
 
 
 	private:
-		int size_; int l; int new_size;
+		int size_; int len; int new_size;
 		double* vec; double* temp;
 	};
 
